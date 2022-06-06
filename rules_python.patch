@@ -1,0 +1,14 @@
+diff --git a/python/pip_install/extract_wheels/lib/bazel.py b/python/pip_install/extract_wheels/lib/bazel.py
+index 3c8697b..44dc2c9 100644
+--- a/python/pip_install/extract_wheels/lib/bazel.py
++++ b/python/pip_install/extract_wheels/lib/bazel.py
+@@ -385,7 +385,8 @@ def extract_wheel(
+     if not enable_implicit_namespace_pkgs:
+         setup_namespace_pkg_compatibility(directory)
+
+-    extras_requested = extras[whl.name] if whl.name in extras else set()
++    whl_name = whl.name.lower()
++    extras_requested = extras[whl_name] if whl_name in extras else set()
+     whl_deps = sorted(whl.dependencies(extras_requested))
+
+     if incremental:
